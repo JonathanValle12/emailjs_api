@@ -9,7 +9,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: "*", // Esto permite todas las origines, ajusta según necesites
+    methods: ["GET", "POST"], // Métodos HTTP permitidos
+    allowedHeaders: ["Content-Type", "Authorization"] // Cabeceras permitidas
+}));
+
 app.use(express.json());
 
 let transporter = nodemailer.createTransport({
